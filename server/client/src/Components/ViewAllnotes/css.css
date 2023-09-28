@@ -1,0 +1,95 @@
+.m-t{
+    margin-top: 5%;
+}
+
+.lrgcontainer{
+    max-width: 1100px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.content-heading{
+    text-align: center;
+}
+
+.table{
+    width: 100%;
+    max-width: 100%;
+    border-collapse: collapse;
+}
+
+.table-right{
+    float: right;
+}
+
+th, td{
+    border: 1px solid black;
+    padding: 10px;
+    text-align: center;
+}
+
+tr:hover{
+    background-color: rgb(235, 234, 234);
+}
+
+.btn-style{
+    display: inline-block;
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3 ease;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid black;
+    cursor: pointer;  
+}
+
+.btn-success{
+    background: #4caf50;
+    color: black;
+}
+
+.btn-success:hover{
+    background: #45a049;
+}
+
+.btn-danger{
+    background: #eb5656;
+    color: black;
+}
+
+.btn-danger:hover{
+    background: #f9004d;
+}
+
+/* Media Queries */
+
+/* For screens with a maximum width of 500px */
+@media (max-width: 500px) {
+    .lrgcontainer {
+      max-width: 100%;
+      padding: 10px;
+    }
+  
+    .table-right {
+      float: none;
+      margin-bottom: 15px;
+    }
+  
+    .btn-style {
+      display: block;
+      margin: 0 auto;
+    }
+    #logoutBtn {
+        padding: 4px 8px;
+        font-size: 0.7rem;
+      }
+  }
+  
+  /* For screens with a minimum width of 501px and a maximum width of 786px */
+  @media (min-width: 501px) and (max-width: 786px) {
+    .lrgcontainer {
+      max-width: 90%;
+      padding: 20px;
+    }
+  }

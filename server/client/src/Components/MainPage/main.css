@@ -1,0 +1,140 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+  }
+  
+  html{
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  /* ************************* Main Heading Styling ******************* */
+  
+  .header-content{
+      position: absolute;
+      text-align: center;
+      color: #000;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+  }
+  
+  .main-heading{
+      text-transform: uppercase;
+  }
+  
+  .header-content::after{
+      content: '';
+      display: block;
+      clear: both;
+  }
+  
+  /* ********************************** Home Features Section Styling ************************** */
+  
+  .features{
+      margin-top: 5%;
+  }
+  
+  .container-box{
+      max-width: 900px;
+      margin: 0 auto;
+  }
+    
+  .buttons{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+  }
+    
+  .ribbon-box {
+      flex-basis: 200px;
+      flex-grow: 1;
+      margin: 10px;
+      padding: 10px;
+  }
+    
+  .block {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    color: #333;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+  }
+    
+  .block:hover {
+    background-color: #e5e5e5;
+  }
+
+  .font {
+    margin-top: 10px;
+    font-size: 16px;
+  }
+    
+  /* *********************************** Footer Styling **************************** */
+  
+  .footer{
+    margin-top: 5%;
+    background-color: rgba(128, 128, 128, 0.582);
+    text-align: center;
+  }
+
+  .soical-icons{
+    padding: 25px 0px 5px 0px;
+    cursor: pointer;
+  }
+
+  .footer p{
+    padding-bottom: 5px;
+  }
+  
+  
+  /* ********************************* Media Quries ******************************* */
+  
+  /* Media query for screens with a maximum width of 500px */
+  @media only screen and (max-width: 500px) {
+    .html{
+      font-size: 50%;
+    }
+  
+    .main-heading {
+      font-size: 24px;
+    }
+  
+    .ribbon-box {
+      width: 100%;
+      margin-bottom: 20px;
+      display: block;
+    }
+  
+    .font {
+      font-size: 14px;
+    }
+  
+    .footer {
+      margin-top: 3%;
+    }
+  }
+  
+  /* Media query for screens with a minimum width of 501px up to a maximum width of 786px */
+  @media only screen and (min-width: 501px) and (max-width: 786px) {
+    .main-heading {
+      font-size: 30px;
+    }
+  
+    .ribbon-box {
+      width: 50%;
+      margin-bottom: 30px;
+    }
+  
+    .font {
+      font-size: 18px;
+    }
+  
+    .footer {
+      margin-top: 4%;
+    }
+  }

@@ -1,0 +1,106 @@
+#loginForm{
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+    color: #222;
+    background: white;
+    background-size: 100vw 100vh;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 340px;
+}
+.logincontainer{
+    width: 340px;
+    height: 340px;
+    padding: 30px;
+    position: relative;
+    display: flex;
+    border: 1px solid rgba(255, 255, 255, .25);
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.45);
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(15px);
+}
+.form_wrap{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+h2{
+    font-size: 22px;
+    margin: 0px;
+    transition: all 0.3s ease;
+}
+/* a{
+    color: #f84298;
+    text-decoration: none;
+    transition: all 0.3s linear;
+    text-align: center;
+} */
+a:hover{
+    color: #a547b1;
+}
+.form_field{
+    width: 100%;
+    flex: 0 0 100%;
+    transition: all 0.5s ease;
+}
+.input_group{
+    width: 100%;
+    margin-bottom: 1rem;
+}
+.input{
+    border: solid black 1px;
+    border-radius: 5px;
+    width: 100%;
+    height: 40px;
+    padding: 5px 10px;
+    font-size: 16px;
+    font-weight: 500;
+    outline: none;
+    transition: all 0.3s linear;
+}
+.input:hover {
+    border-color: rgba(248, 66, 151, 0.3);
+  }
+  .forgot {
+    display: block;
+    margin-bottom: 15px;
+    padding: 0px 2px;
+  }
+.btn{
+    width: 100%;
+    height: 40px;
+    margin-bottom: 15px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0.8px;
+    color: white;
+    background: linear-gradient(45deg, #a547b1, #f84298) no-repeat center;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s linear;
+  }
+.btn:hover{
+    background: linear-gradient(-45deg, #a547b1, #f84298) no-repeat center;
+}
+.not_member{
+    color: #f84298;
+    align-items: center;
+    /* text-decoration: none; */
+    transition: all 0.3s linear;
+}
+
+.not_member:hover{
+    color: #a547b1;
+    text-decoration: underline;
+}

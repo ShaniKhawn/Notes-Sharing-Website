@@ -1,0 +1,202 @@
+
+ .header{
+    background: url('../images/home.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 95vh;
+    width: 100%;
+  }
+  
+  .header .container{
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+  }
+  
+  
+  /* ***************************** Logo Style ************************** */
+  
+  .logo {
+    font-family: 'Poppins', sans-serif;
+    font-size: 30px;
+    font-weight: bold;
+    color: #000;
+    cursor: pointer;
+  }   
+    
+  .logo span {
+    color: #f9004d;
+  }
+  
+  /* **************************** Navigation Bar Styling ************************ */
+  
+  .nav-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    background-color:lightgray;
+    
+    }
+    
+  .nav-items {
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    margin-left: 50px;
+  }
+  
+  ul li{
+    list-style: none;
+  }
+  
+  .nav-item{
+    position: relative;
+    display: inline-block;
+    margin: 0 20px 0 20px;
+    text-transform: capitalize;
+    font-weight: bold;
+  }
+  
+  .nav-item a{
+    text-decoration: none;
+    color: #000;
+    transition: all 0.3s;
+  }
+  
+  .nav-bar a:hover{
+    color: #f9004d;
+  }
+
+  .nav-bar::after{
+    content: "";
+    display: block;
+    clear: both;
+  }
+  
+  /* *************************** DropDown Menu Style *****************************  */
+  
+  .dropdown {
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 0px;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color:lightgray;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+  }
+  
+  .nav-item:hover .dropdown-content {
+    display: block;
+    border-radius: 10px;
+  }
+  
+  .dropdown-content li {
+    padding: 10px;
+  }
+  
+  .dropdown-content li a {
+    color: black;
+    text-decoration: none;
+    display: block;
+  }
+  
+  /* ************************** User Login style **************************  */
+  
+  .userlogin{
+    background-color: #3b3a3a84;
+    padding: 4px 5px;
+    border: 2px solid transparent;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 30px;
+    transition: transform .4s;
+  }
+  
+  .userlogin:hover{
+    color: white;
+  }
+  
+  #logoutBtn{
+    margin: 0 300%;
+    background: #eb5656;
+    padding: 4px 5px;
+    border: 2px solid transparent;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 30px;
+    transition: transform .4s;
+    cursor: pointer;
+  }
+  
+  /* ********************************* Media Quries ******************************* */
+  
+  /* Media query for screens with a maximum width of 500px */
+  @media only screen and (max-width: 500px) {
+  
+  .logo {
+    font-size: 15px;
+    }
+  
+  .nav-items {
+    margin-left: 15px;
+    font-size:x-small;
+    }
+    .nav-items .nav-item {
+      margin: 0 10px;
+    }
+  
+    .dropdown-content {
+      min-width: 120px;
+    }
+    
+    .dropdown-content li {
+      padding: 5px;
+    }
+    
+    .container {
+      max-width: 90%;
+    }
+
+    #logoutBtn{
+      margin: 0%;
+      font-size: xx-small;
+    }
+  }
+
+  /* Media query for screens with a minimum width of 501px up to a maximum width of 786px */
+  @media only screen and (min-width: 501px) and (max-width: 786px) {
+    .nav-items {
+      margin-left: 30px;
+    }
+  
+    .nav-items .nav-item {
+      margin: 0 15px;
+    }
+  
+    .dropdown-content {
+      min-width: 140px;
+    }
+    
+    .dropdown-content li {
+      padding: 10px;
+    }
+
+    .container {
+      max-width: 100%;
+    }
+
+    #logoutBtn{
+      margin: 0%;
+    }
+  }
