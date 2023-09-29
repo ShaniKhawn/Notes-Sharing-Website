@@ -36,7 +36,7 @@
     padding-bottom: 100%;
     transform: translateX(-110%);
     transition: transform 0.5s ease-in-out ;
-    padding-left: 50px ;
+    padding-left: 30px ;
     background: lightgrey;
     text-transform: capitalize;
     font-weight: bold;
@@ -86,3 +86,33 @@ li a{
 .hamburger-menu input[type="checkbox"]:checked ~ .hamburger-lines .line3{
     transform: rotate(-45deg);
 }
+
+/* submenu */
+.menu-items li ul {
+    display: none;
+  }
+  
+  .menu-items li:hover ul {
+    display: block;
+    position: absolute;
+    top: 15%;
+    left: 55%;
+    background: lightgray;
+  }
+  
+  .menu-items li ul li {
+    margin: 0;
+    font-size: 1rem;
+  }
+  
+  .menu-items li ul li a {
+    color: #333;
+    text-decoration: none;
+    display: block;
+    padding: 6px 10px;
+  }
+  
+  .menu-items li ul li a:hover {
+    color:#f9004d;
+  }
+  

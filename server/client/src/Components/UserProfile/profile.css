@@ -1,0 +1,70 @@
+.user-profile {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  margin-top: 5%;
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.45);
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(15px);
+}
+
+.user-profile h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.update-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.update-button:hover {
+  background-color: #0056b3;
+}
+
+/* Media query for screens with a max-width of 786px */
+@media screen and (max-width: 786px) {
+  .user-profile {
+    max-width: 90%;
+    margin-top: 10%;
+  }
+}
+
+/* Media query for screens with a max-width of 500px */
+@media screen and (max-width: 500px) {
+  .user-profile {
+    max-width: 90%;
+    margin-top: 15%;
+  }
+}
