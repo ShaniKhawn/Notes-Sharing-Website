@@ -17,7 +17,7 @@ app.use('/status', require('./routes/status'))
 app.use('/acceptNotes', require('./routes/acceptNotes'));
 app.use('/rejectNotes', require('./routes/rejectNotes'));
 app.use('/allNotes', require('./routes/allNotes'));
-// app.use('/myNotes', require('./routes/myNotes'));
+app.use('/myNotes', require('./routes/myNotes'));
 app.use('/viewUsers', require('./routes/viewUsers'));
 app.use('/contact', require('./routes/contact'));
 app.use('/viewQueries', require('./routes/viewQueries'));
