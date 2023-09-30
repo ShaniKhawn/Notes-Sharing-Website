@@ -1,17 +1,43 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import UserNavbar from "../Navbar/usernavbar";
 import "../ViewAllnotes/css.css";
 
 export default function Mynotes() {
   const [notes, setNotes] = useState([]);
-  const currentUserID = localStorage.getItem("user");
+  const [searchInput, setSearchInput] = useState("");
+  const [filteredNotes, setFilteredNotes] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/myNotes")
-      .then((response) => response.json())
-      .then((data) => setNotes(data))
-      .catch((error) => console.error("Error fetching notes:", error));
+    const userId = localStorage.getItem("user");
+    console.log("userId", userId);
+    const fetchData = () => {
+      fetch(`http://localhost:5000/myNotes/${userId}`)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Notes data not gotted");
+          }
+          // console.log('response', response.json());
+          // setNotes(response.json());
+          return response.json();
+        })
+        .then((data) => setNotes(data))
+        .catch((err) => {
+          console.log("error in getting mynotes", err);
+        });
+    };
+    fetchData();
   }, []);
+  console.log("notes in state", notes);
+
+  // Filter notes based on searchInput
+  useEffect(() => {
+    const filtered = notes.filter(
+      (note) =>
+        note.branch.toLowerCase().includes(searchInput.toLowerCase()) ||
+        note.subject.toLowerCase().includes(searchInput.toLowerCase())
+    );
+    setFilteredNotes(filtered);
+  }, [searchInput, notes]);
 
   // Delete the notes
   const handleDelete = (noteId) => {
@@ -21,7 +47,7 @@ export default function Mynotes() {
       return;
     }
 
-    fetch(`http://localhost:5000/pendingnotes/${noteId}`, {
+    fetch(`http://localhost:5000/myNotes/${noteId}`, {
       method: "DELETE",
     })
       .then((response) => {
@@ -31,11 +57,12 @@ export default function Mynotes() {
         setNotes((prevNotes) =>
           prevNotes.filter((note) => note._id !== noteId)
         );
+        setFilteredNotes((prevNotes) =>
+          prevNotes.filter((note) => note._id !== noteId)
+        );
       })
       .catch((error) => console.error("Error deleting note:", error));
   };
-
-  const filteredNotes = notes.filter((note) => note.user._id === currentUserID);
 
   return (
     <>
@@ -44,6 +71,21 @@ export default function Mynotes() {
       <main className="my-notes m-t">
         <div className="lrgcontainer">
           <h2 className="content-heading">View My Notes</h2>
+          <div className="search-box">
+            <input
+              type="text"
+              placeholder="Search by Branch or Subject"
+              value={searchInput}
+              onChange={(e) => setSearchInput(e.target.value)}
+              style={{
+                float: "right",
+                padding: "10px",
+                width: "30%",
+                marginBlockEnd: "20px",
+                font: "icon",
+              }}
+            />
+          </div>
           <table className="table" id="myNotes">
             <thead>
               <tr>
@@ -62,7 +104,7 @@ export default function Mynotes() {
 
             <tbody>
               {filteredNotes.map((note, index) => (
-                <tr key={note._id}>
+                <tr key={index}>
                   <td>{index + 1}</td>
                   <td>{note.user.name}</td>
                   <td>{new Date(note.uploadingDate).toLocaleDateString()}</td>
@@ -71,7 +113,7 @@ export default function Mynotes() {
                   <td>
                     <button className="btn-style btn-success">
                       <a
-                        href={`http://localhost:5000/acceptNotes/${note._id}/download`}
+                        href={`http://localhost:5000/myNotes/${note._id}/download`}
                         style={{ textDecorationLine: "none", color: "black" }}
                       >
                         Download

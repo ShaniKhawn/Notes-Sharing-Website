@@ -109,7 +109,7 @@ export default function PendingNotes() {
                   <td>
                     <button className="btn-style btn-success">
                       <a
-                        href={`http://localhost:5000/acceptNotes/${note._id}/download`}
+                        href={`http://localhost:5000/pendingnotes/${note._id}/download`}
                         style={{ textDecorationLine: "none", color: "black" }}
                       >
                         Download
