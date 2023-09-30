@@ -19,9 +19,9 @@ export default function Navbar() {
           <li className="nav-item">
             <Link to="/contact">Contact</Link>
           </li>
-          <button className="nav-item userlogin" id="userLoginBtn">
+          <li className="nav-item userlogin" id="userLoginBtn">
             <Link to="/login">User Login</Link>
-          </button>
+          </li>
         </ul>
       </nav>
     </>

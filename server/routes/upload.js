@@ -9,9 +9,9 @@ const storage = multer.diskStorage({
     cb(null, 'uploads/');
   },
   filename: function (req, file, cb) {
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-    cb(null, file.fieldname + '-' + uniqueSuffix + path.extname(file.originalname));
+    cb(null, file.originalname); // Use the original filename
   },
+  
 });
 
 const upload = multer({ storage });
@@ -26,6 +26,7 @@ router.post('/', upload.single('notes-file'), async (req, res) => {
       fileType,
       description,
       user,
+      fileName: req.file.originalname,
     });
 
     await newNote.save();

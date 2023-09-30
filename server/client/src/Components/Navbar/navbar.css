@@ -1,8 +1,8 @@
 
  .header{
     background: url('../images/home.jpg');
-    background-size: cover;
     background-position: center;
+    background-size: cover;
     background-repeat: no-repeat;
     height: 95vh;
     width: 100%;
@@ -40,12 +40,11 @@
     padding-right: 10px;
     padding-bottom: 10px;
     background-color:lightgray;
-    
     }
     
   .nav-items {
     display: flex;
-    justify-content:space-between;
+    justify-content:center;
     align-items: center;
     margin-left: 50px;
   }
@@ -71,7 +70,7 @@
   .nav-bar a:hover{
     color: #f9004d;
   }
-
+  
   .nav-bar::after{
     content: "";
     display: block;
@@ -117,7 +116,6 @@
     background-color: #3b3a3a84;
     padding: 4px 5px;
     border: 2px solid transparent;
-    font-size: 1rem;
     font-weight: bold;
     border-radius: 30px;
     transition: transform .4s;

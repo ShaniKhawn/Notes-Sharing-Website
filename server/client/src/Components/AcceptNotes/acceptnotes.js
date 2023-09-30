@@ -26,25 +26,18 @@ export default function AcceptNotes() {
   useEffect(() => {
     const filtered = acceptedNotes.filter(
       (note) =>
-        // note.user.name.toLowerCase().includes(searchInput.toLowerCase()) ||
         note.branch.toLowerCase().includes(searchInput.toLowerCase()) ||
         note.subject.toLowerCase().includes(searchInput.toLowerCase())
     );
     setFilteredNotes(filtered);
   }, [searchInput, acceptedNotes]);
 
-  //Download notes
-
-  const handleDownload = (downloadLink) => {
-    window.location.href = downloadLink;
-  };
-
   //Delete the notes
   const handleDelete = (noteId) => {
     const confirmed = window.confirm("Are you sure to delete this note?");
 
     if (!confirmed) {
-      return; // Do nothing if the user cancels the deletion
+      return;
     }
 
     fetch(`http://localhost:5000/acceptNotes/${noteId}`, {
@@ -54,7 +47,6 @@ export default function AcceptNotes() {
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
-        // Remove the deleted note from the state in which it is present
         setAcceptedNotes((prevNotes) =>
           prevNotes.filter((note) => note._id !== noteId)
         );
@@ -75,7 +67,13 @@ export default function AcceptNotes() {
               placeholder="Search by Branch or Subject"
               value={searchInput}
               onChange={(e) => setSearchInput(e.target.value)}
-              style={{ float: "right", padding: "10px", width: "30%", marginBlockEnd:'20px', font:'icon' }}
+              style={{
+                float: "right",
+                padding: "10px",
+                width: "30%",
+                marginBlockEnd: "20px",
+                font: "icon",
+              }}
             />
           </div>
           <table className="table" id="acceptedNotes">
@@ -103,12 +101,13 @@ export default function AcceptNotes() {
                   <td>{note.branch}</td>
                   <td>{note.subject}</td>
                   <td>
-                    {" "}
-                    <button
-                      className="btn-style btn-success"
-                      onClick={() => handleDownload(note.downloadLink)}
-                    >
-                      Download
+                    <button className="btn-style btn-success">
+                      <a
+                        href={`http://localhost:5000/acceptNotes/${note._id}/download`}
+                        style={{ textDecorationLine: "none", color: "black" }}
+                      >
+                        Download
+                      </a>
                     </button>
                   </td>
                   <td>{note.fileType}</td>

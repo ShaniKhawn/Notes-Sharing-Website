@@ -23,8 +23,6 @@ import Chemistry from './Components/ViewAllnotes/chemistry';
 import Botony from './Components/ViewAllnotes/botony';
 import Zoology from './Components/ViewAllnotes/zoology';
 import English from './Components/ViewAllnotes/english';
-// import UserProfile from './Components/UserProfile/profile';
-import HCI from './Components/ViewAllnotes/SubMenu/HCI';
 
 function App() {
   return (
@@ -55,8 +53,6 @@ function App() {
           <Route exact path='/botony' element={<Botony />} />
           <Route exact path='/zoology' element={<Zoology />} />
           <Route exact path='/english' element={<English />} />
-          {/* <Route exact path='/profile' element={<UserProfile />} /> */}
-          <Route exact path='HCI' element={< HCI />} />
         </Routes>
       </Router>
     </div>

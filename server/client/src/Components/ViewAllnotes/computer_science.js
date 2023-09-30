@@ -16,7 +16,7 @@ export default function Computer() {
         return response.json();
       })
       .then((data) => {
-        // Filter notes with "accept" status and "Computer Science" branch
+        // Filter notes with status "accept" and branch "Computer Science"
         const viewallnotes = data.filter((note) => note.status === "accept" && note.branch === "Computer Science");
         setNotes(viewallnotes);
       })
@@ -32,11 +32,6 @@ export default function Computer() {
     );
     setFilteredNotes(filtered);
   }, [searchInput, notes]);
-
-  const handleDownload = (downloadLink) => {
-    window.location.href = downloadLink;
-  };
-
 
   return (
     <>
@@ -85,14 +80,15 @@ export default function Computer() {
                     <td>{note.branch}</td>
                     <td>{note.subject}</td>
                     <td>
-                      {" "}
-                      <button
-                        className="btn-style btn-success"
-                        onClick={() => handleDownload(note.downloadLink)}
+                    <button className="btn-style btn-success">
+                      <a
+                        href={`http://localhost:5000/viewallnotes/${note._id}/download`}
+                        style={{ textDecorationLine: "none", color: "black" }}
                       >
                         Download
-                      </button>
-                    </td>
+                      </a>
+                    </button>
+                  </td>
                     <td>{note.fileType}</td>
                     <td>{note.description}</td>
                     <td>{note.status}</td>

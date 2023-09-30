@@ -19,7 +19,7 @@ export default function PendingNotes() {
         // Filter notes with "pending" status
         const pendingNotes = data.filter((note) => note.status === "pending");
         setNotes(pendingNotes);
-        setFilteredNotes(pendingNotes); // Initialize filteredNotes with all notes
+        setFilteredNotes(pendingNotes);
       })
       .catch((error) => console.error("Error fetching notes:", error));
   }, []);
@@ -28,40 +28,18 @@ export default function PendingNotes() {
   useEffect(() => {
     const filtered = notes.filter(
       (note) =>
-        // note.user.name.toLowerCase().includes(searchInput.toLowerCase()) ||
         note.branch.toLowerCase().includes(searchInput.toLowerCase()) ||
         note.subject.toLowerCase().includes(searchInput.toLowerCase())
     );
     setFilteredNotes(filtered);
   }, [searchInput, notes]);
 
-  //Download notes
-const handleDownload = async (downloadLink, fileName) => {
-  try {
-    const response = await fetch(downloadLink);
-    const blob = await response.blob();
-
-    const url = window.URL.createObjectURL(blob);
-
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = fileName;
-
-    a.click();
-
-    window.URL.revokeObjectURL(url);
-  } catch (error) {
-    console.error('Error downloading note:', error);
-  }
-};
-
-
   // Delete the notes
   const handleDelete = (noteId) => {
     const confirmed = window.confirm("Are you sure to delete this note?");
 
     if (!confirmed) {
-      return; // Do nothing if the user cancels the deletion
+      return;
     }
 
     fetch(`http://localhost:5000/pendingnotes/${noteId}`, {
@@ -71,7 +49,6 @@ const handleDownload = async (downloadLink, fileName) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
-        // Remove the deleted note from the state in which it is present
         setNotes((prevNotes) =>
           prevNotes.filter((note) => note._id !== noteId)
         );
@@ -130,18 +107,20 @@ const handleDownload = async (downloadLink, fileName) => {
                   <td>{note.branch}</td>
                   <td>{note.subject}</td>
                   <td>
-                    <button
-                      className="btn-style btn-success"
-                      onClick={() => handleDownload(note.download)}
-                    >
-                      Download
+                    <button className="btn-style btn-success">
+                      <a
+                        href={`http://localhost:5000/acceptNotes/${note._id}/download`}
+                        style={{ textDecorationLine: "none", color: "black" }}
+                      >
+                        Download
+                      </a>
                     </button>
                   </td>
                   <td>{note.fileType}</td>
                   <td>{note.description}</td>
                   <td>{note.status}</td>
                   <td>
-                    <Link to={`/status/${note._id}`}>Accept / Reject</Link>
+                    <Link to={`/status/${note._id}`}>Accept or Reject</Link>
                   </td>
                   <td>
                     <button

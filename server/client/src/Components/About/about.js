@@ -3,6 +3,7 @@ import React from "react";
 import Navbar from "../Navbar/navbar";
 import "./about.css";
 import "../MainPage/main.css"
+
 export default function About() {
     return (
         <>

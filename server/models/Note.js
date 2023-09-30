@@ -7,10 +7,10 @@ const noteSchema = new mongoose.Schema({
   fileType: String,
   description: String,
   filePath: String,
+  fileName: String,
   userId: String,
   uploadingDate: {type : Date, default : Date.now},
   status: {type: String, default: 'pending'},
-
 });
 
 const Note = mongoose.model('Note', noteSchema);

@@ -29,16 +29,11 @@ export default function Botony() {
   useEffect(() => {
     const filtered = notes.filter(
       (note) =>
-        // note.user.name.toLowerCase().includes(searchInput.toLowerCase()) ||
         note.branch.toLowerCase().includes(searchInput.toLowerCase()) ||
         note.subject.toLowerCase().includes(searchInput.toLowerCase())
     );
     setFilteredNotes(filtered);
   }, [searchInput, notes]);
-
-  const handleDownload = (downloadLink) => {
-    window.location.href = downloadLink;
-  };
 
   return (
     <>
@@ -87,12 +82,13 @@ export default function Botony() {
                   <td>{note.branch}</td>
                   <td>{note.subject}</td>
                   <td>
-                    {" "}
-                    <button
-                      className="btn-style btn-success"
-                      onClick={() => handleDownload(note.downloadLink)}
-                    >
-                      Download
+                    <button className="btn-style btn-success">
+                      <a
+                        href={`http://localhost:5000/viewallnotes/${note._id}/download`}
+                        style={{ textDecorationLine: "none", color: "black" }}
+                      >
+                        Download
+                      </a>
                     </button>
                   </td>
                   <td>{note.fileType}</td>

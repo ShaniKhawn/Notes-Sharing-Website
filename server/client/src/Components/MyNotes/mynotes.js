@@ -1,43 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import UserNavbar from "../Navbar/usernavbar";
 import "../ViewAllnotes/css.css";
 
 export default function Mynotes() {
   const [notes, setNotes] = useState([]);
-  const [searchInput, setSearchInput] = useState("");
-  const [filteredNotes, setFilteredNotes] = useState([]);
+  const currentUserID = localStorage.getItem("user");
 
   useEffect(() => {
-    const userId = localStorage.getItem("user");
-    console.log("userId", userId);
-    const fetchData = () => {
-      fetch(`http://localhost:5000/mynotes/${userId}`)
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("Notes data not gotted");
-          }
-          // console.log('response', response.json());
-          // setNotes(response.json());
-          return response.json();
-        })
-        .then((data) => setNotes(data))
-        .catch((err) => {
-          console.log("error in getting mynotes", err);
-        });
-    };
-    fetchData();
+    fetch("http://localhost:5000/myNotes")
+      .then((response) => response.json())
+      .then((data) => setNotes(data))
+      .catch((error) => console.error("Error fetching notes:", error));
   }, []);
-  console.log("notes in state", notes);
-
-  // Filter notes based on searchInput
-  useEffect(() => {
-    const filtered = notes.filter(
-      (note) =>
-        note.branch.toLowerCase().includes(searchInput.toLowerCase()) ||
-        note.subject.toLowerCase().includes(searchInput.toLowerCase())
-    );
-    setFilteredNotes(filtered);
-  }, [searchInput, notes]);
 
   // Delete the notes
   const handleDelete = (noteId) => {
@@ -47,7 +21,7 @@ export default function Mynotes() {
       return;
     }
 
-    fetch(`http://localhost:5000/mynotes/${noteId}`, {
+    fetch(`http://localhost:5000/pendingnotes/${noteId}`, {
       method: "DELETE",
     })
       .then((response) => {
@@ -57,16 +31,11 @@ export default function Mynotes() {
         setNotes((prevNotes) =>
           prevNotes.filter((note) => note._id !== noteId)
         );
-        setFilteredNotes((prevNotes) =>
-          prevNotes.filter((note) => note._id !== noteId)
-        );
       })
       .catch((error) => console.error("Error deleting note:", error));
   };
 
-  const handleDownload = (downloadLink) => {
-    window.location.href = downloadLink;
-  };
+  const filteredNotes = notes.filter((note) => note.user._id === currentUserID);
 
   return (
     <>
@@ -74,22 +43,7 @@ export default function Mynotes() {
 
       <main className="my-notes m-t">
         <div className="lrgcontainer">
-        <h2 className="content-heading">View My Notes</h2>
-            <div className="search-box">
-                <input
-                    type="text"
-                    placeholder="Search by Branch or Subject"
-                    value={searchInput}
-                    onChange={(e) => setSearchInput(e.target.value)}
-                    style={{
-                        float: "right",
-                        padding: "10px",
-                        width: "30%",
-                        marginBlockEnd: "20px",
-                        font: "icon",
-                    }}
-                />
-            </div>
+          <h2 className="content-heading">View My Notes</h2>
           <table className="table" id="myNotes">
             <thead>
               <tr>
@@ -108,19 +62,20 @@ export default function Mynotes() {
 
             <tbody>
               {filteredNotes.map((note, index) => (
-                <tr key={index}>
+                <tr key={note._id}>
                   <td>{index + 1}</td>
                   <td>{note.user.name}</td>
                   <td>{new Date(note.uploadingDate).toLocaleDateString()}</td>
                   <td>{note.branch}</td>
                   <td>{note.subject}</td>
                   <td>
-                    {" "}
-                    <button
-                      className="btn-style btn-success"
-                      onClick={() => handleDownload(note.filePath)}
-                    >
-                      Download <a href={note.filePath} download></a>
+                    <button className="btn-style btn-success">
+                      <a
+                        href={`http://localhost:5000/acceptNotes/${note._id}/download`}
+                        style={{ textDecorationLine: "none", color: "black" }}
+                      >
+                        Download
+                      </a>
                     </button>
                   </td>
                   <td>{note.fileType}</td>

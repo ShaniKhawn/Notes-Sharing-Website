@@ -1,21 +1,28 @@
 import React, { useEffect, useState } from "react";
-import AdminNavbar from "../Navbar/adminnavbar";
+import UserNavbar from "../Navbar/usernavbar";
+import HamburgerMenu from "../Navbar/hamburger-menu";
 
-export default function AllNotes() {
+export default function DataBase() {
   const [notes, setNotes] = useState([]);
   const [searchInput, setSearchInput] = useState("");
   const [filteredNotes, setFilteredNotes] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/allNotes")
+    fetch("http://localhost:5000/viewallnotes")
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
         return response.json();
       })
-      .then((data) => setNotes(data))
-      .catch((error) => console.error("Error fetching all notes:", error));
+      .then((data) => {
+        // Filter notes with status "accept" and branch "Computer Science" and subject "Data Base"
+        const viewallnotes = data.filter(
+          (note) => note.status === "accept" && note.branch === "Computer Science"
+            && note.subject === "Data Base");
+        setNotes(viewallnotes);
+      })
+      .catch((error) => console.error("Error fetching notes:", error));
   }, []);
 
   // Filter notes based on searchInput
@@ -28,38 +35,14 @@ export default function AllNotes() {
     setFilteredNotes(filtered);
   }, [searchInput, notes]);
 
-  //Delete the notes
-  const handleDelete = (noteId) => {
-    const confirmed = window.confirm("Are you sure to delete this note?");
-
-    if (!confirmed) {
-      return;
-    }
-
-    fetch(`http://localhost:5000/allNotes/${noteId}`, {
-      method: "DELETE",
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        setNotes((prevNotes) =>
-          prevNotes.filter((note) => note._id !== noteId)
-        );
-        setFilteredNotes((prevNotes) =>
-          prevNotes.filter((note) => note._id !== noteId)
-        );
-      })
-      .catch((error) => console.error("Error deleting note:", error));
-  };
-
   return (
     <>
-      <AdminNavbar />
+      <UserNavbar />
+      <HamburgerMenu />
 
-      <main className="all-notes m-t">
+      <div className="viewall-notes m-t">
         <div className="lrgcontainer">
-          <h2 className="content-heading">All Notes</h2>
+          <h2 className="content-heading">Data Base Notes</h2>
           <div className="search-box">
             <input
               type="text"
@@ -75,7 +58,7 @@ export default function AllNotes() {
               }}
             />
           </div>
-          <table className="table" id="allNotes">
+          <table className="table" id="view_allNotes">
             <thead>
               <tr>
                 <th>S.No</th>
@@ -87,13 +70,12 @@ export default function AllNotes() {
                 <th>File Type</th>
                 <th>Description</th>
                 <th>Status</th>
-                <th>Action</th>
               </tr>
             </thead>
 
             <tbody>
               {filteredNotes.map((note, index) => (
-                <tr key={note._id}>
+                <tr key={index}>
                   <td>{index + 1}</td>
                   <td>{note.user.name}</td>
                   <td>{new Date(note.uploadingDate).toLocaleDateString()}</td>
@@ -102,8 +84,8 @@ export default function AllNotes() {
                   <td>
                     <button className="btn-style btn-success">
                       <a
-                        href={`http://localhost:5000/allNotes/${note._id}/download`}
-                        style={{textDecorationLine: "none", color: "black"}}
+                        href={`http://localhost:5000/viewallnotes/${note._id}/download`}
+                        style={{ textDecorationLine: "none", color: "black" }}
                       >
                         Download
                       </a>
@@ -112,20 +94,12 @@ export default function AllNotes() {
                   <td>{note.fileType}</td>
                   <td>{note.description}</td>
                   <td>{note.status}</td>
-                  <td>
-                    <button
-                      className="btn-style btn-danger"
-                      onClick={() => handleDelete(note._id)}
-                    >
-                      Delete
-                    </button>
-                  </td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
-      </main>
+      </div>
     </>
   );
 }
