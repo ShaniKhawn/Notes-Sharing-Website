@@ -43,7 +43,7 @@ export default function Upload() {
         
         // Show success alert
         alert('File uploaded successfully!');
-        navigate("/mynotes")
+        navigate("/user/mynotes")
         // Clear form fields or perform other actions as needed
         setFormData({
           branch: '',

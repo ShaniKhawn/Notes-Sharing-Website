@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express.Router();
+const bcrypt = require('bcrypt');
 const User = require('../models/user');
 const jwt = require('jsonwebtoken');
 
@@ -13,8 +14,9 @@ app.post('/', async (req, res) => {
       return res.status(401).json({ message: 'Invalid email or password' });
     }
 
-    // Check if password is correct
-    if (user.password !== password) {
+    // Verify the hashed password
+    const passwordMatch = await bcrypt.compare(password, user.password);
+    if (!passwordMatch) {
       return res.status(401).json({ message: 'Invalid email or password' });
     }
 
