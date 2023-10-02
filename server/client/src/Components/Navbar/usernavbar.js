@@ -17,13 +17,13 @@ export default function UserNavbar() {
             <Link to="/user">Home</Link>
           </li>
           <li className="nav-item">
-            <Link to="/upload">Upload Notes</Link>
+            <Link to="/user/upload">Upload Notes</Link>
           </li>
           <li className="nav-item">
-            <Link to="/viewallnotes">View All Notes</Link>
+            <Link to="/user/viewallnotes">View All Notes</Link>
           </li>
           <li className="nav-item">
-            <Link to="/mynotes">My Notes</Link>
+            <Link to="/user/mynotes">My Notes</Link>
           </li>
           <li>
             <button id="logoutBtn" onClick={() => navigate("/")}>

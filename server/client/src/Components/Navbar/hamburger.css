@@ -34,6 +34,7 @@
 .menu-items {
   padding-top: 80px;
   padding-bottom: 100%;
+  display: none;
   transform: translateX(-110%);
   transition: transform 0.5s ease-in-out;
   padding-left: 30px;
@@ -99,7 +100,8 @@ li a {
   display: none;
   position: absolute;
   top: 15%;
-  left: 55%;
+  /* left: 55%; */
+  right: -20%;
   background-color: lightgrey;
   border: 1px solid #000;
   border-radius: 10px;
@@ -115,8 +117,8 @@ li a {
 }
 
 .submenu ul li {
-  padding-left: 6px;
-  padding-right: 26px;
+  padding-left: 20px;
+  padding-right: 20px;
   margin: 0;
 }
 

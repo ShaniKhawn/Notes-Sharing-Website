@@ -1,0 +1,119 @@
+.upload-grp{
+    margin-top: 4%;
+    /* padding: 4%; */
+}
+
+.container1{
+    max-width: 1000px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.upload-heading{
+    font-family: 'Poppins', sans-serif;
+    border-bottom: 3px solid rgba(255, 0, 0, 0.575);
+    padding: 5px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.form-wrapper{
+    padding-top: 2%;
+}
+
+.upload-image{
+    width: 50%;
+    float: right;
+    height: 300px;
+}
+
+.upload-photo{
+    max-width: 500px;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+}
+
+.form-wrapper .form{
+    width: 50%;
+    float: left;
+}
+
+.form-wrapper .form .form-grp{
+    margin-bottom: .2rem;
+}
+
+.form-wrapper label{
+    display: block;
+    margin-bottom: .5rem;
+    width: 20%;
+}
+
+.form-wrapper input{
+    border: solid black 1px;
+    border-radius: 5px;
+    width: 80%;
+    padding: 5px 10px;
+    font-size: 10px;
+    outline: none;
+    /* transition: all 0.3s linear; */
+}
+
+
+.form-wrapper .form .form-grp .select-grp{
+    border: solid black 1px;
+    border-radius: 5px;
+    width: 80%;
+    padding: 5px 10px;
+    font-size: 10px;
+    outline: none;
+}
+
+.form-wrapper .form textarea{
+    border: solid black 1px;
+    border-radius: 5px;
+    width: 80%;
+    padding: 5px 10px;
+    font-size: 10px;
+    outline: none;
+}
+
+.form-btn{
+    display: block;
+    margin: 0 20%;
+    padding: 10px 20px;
+    text-transform: uppercase;
+    background: #eb5656;
+    color: #f4f4f4;
+    outline: none;
+    border:none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    /* overflow: hidden; */
+}
+
+.form-btn i{
+    margin-right: 5px;
+}
+
+.form-wrapper::after{
+    content: '';
+    display: block;
+    clear: both;
+}
+
+/* Media Queries */
+@media screen and (max-width: 768px) {
+  .form-btn {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .form-btn {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+}

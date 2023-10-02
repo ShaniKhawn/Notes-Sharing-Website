@@ -1,18 +1,17 @@
-const express = require("express");
-const router = express();
-const path = require('path');
+const express = require('express');
+const router = express.Router();
 const Note = require('../models/Note');
+const path = require('path');
+const fs = require('fs');
 
-
-router.get('/:userId', async (req, res) => {
-    // console.log('my notes api triggered....');
-    const notes = await Note.find({user:req.params.userId}).populate({path: 'user', model: 'Users'}).exec();
-    if(notes.length > 0){
-         res.json(notes);
-        // console.log('getting my notes backend', notes);
-    }else{
-         res.json("no notes found");
-    }
+router.get('/', async (req, res) => {
+  try {
+    const allNotes = await Note.find().populate({path:'user', model: 'Users'});
+    res.json(allNotes);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server error' });
+  }
 });
 
 // Download a specific note by ID
@@ -38,20 +37,20 @@ router.get('/:noteId/download', async (req, res) => {
 
 // Delete a specific note by ID
 router.delete('/:noteId', async (req, res) => {
-    try {
-      const noteId = req.params.noteId;
-      const note = await Note.findById(noteId);
-  
-      if (!note) {
-        return res.status(404).json({ error: 'Note not found' });
-      }
- 
-      await Note.findByIdAndDelete(noteId);
-  
-      res.json({ message: 'Note deleted successfully' });
-    } catch (error) {
-      res.status(500).json({ error: 'Internal server error' });
+  try {
+    const noteId = req.params.noteId;
+    const note = await Note.findById(noteId);
+
+    if (!note) {
+      return res.status(404).json({ error: 'Note not found' });
     }
-  });
+    // Delete the note from the database
+    await Note.findByIdAndDelete(noteId);
+
+    res.json({ message: 'Note deleted successfully' });
+  } catch (error) {
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
 
 module.exports = router;

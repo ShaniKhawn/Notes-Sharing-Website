@@ -2,7 +2,7 @@ import React from "react";
 // import { Link } from "react-router-dom";
 import Navbar from "../Navbar/navbar";
 import "./about.css";
-import "../MainPage/main.css"
+import "../HomePage/main.css"
 
 export default function About() {
     return (

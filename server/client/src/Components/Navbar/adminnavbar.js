@@ -23,25 +23,25 @@ export default function AdminNavbar() {
             <div className="dropdown">
               <ul className="dropdown-content">
                 <li>
-                  <Link to="/pendingnotes">Pending Notes</Link>
+                  <Link to="/admin/pendingnotes">Pending Notes</Link>
                 </li>
                 <li>
-                  <Link to="/rejectnotes">Rejected Notes</Link>
+                  <Link to="/admin/rejectnotes">Rejected Notes</Link>
                 </li>
                 <li>
-                  <Link to="/acceptnotes">Accepted Notes</Link>
+                  <Link to="/admin/acceptnotes">Accepted Notes</Link>
                 </li>
                 <li>
-                  <Link to="/allnotes">All Notes</Link>
+                  <Link to="/admin/allnotes">All Notes</Link>
                 </li>
               </ul>
             </div>
           </li>
           <li className="nav-item">
-            <Link to="/viewusers">View User</Link>
+            <Link to="/admin/viewusers">View User</Link>
           </li>
           <li className="nav-item">
-            <Link to="/contactqueries">Contact Query</Link>
+            <Link to="/admin/contactqueries">Contact Query</Link>
           </li>
           <li>
             <button id="logoutBtn" onClick={() => navigate("/")}>
