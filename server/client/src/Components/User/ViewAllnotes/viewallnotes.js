@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import UserNavbar from "../../Navbar/usernavbar";
-import HamburgerMenu from "../../Navbar/hamburger-menu";
 import "./css.css";
 
 export default function ViewAllnotes() {
   const [notes, setNotes] = useState([]);
   const [searchInput, setSearchInput] = useState("");
+  const [selectedBranch, setSelectedBranch] = useState("All"); // Default value is "All"
   const [filteredNotes, setFilteredNotes] = useState([]);
 
   useEffect(() => {
@@ -24,28 +24,30 @@ export default function ViewAllnotes() {
       .catch((error) => console.error("Error fetching notes:", error));
   }, []);
 
-  // Filter notes based on searchInput
+  // Filter notes based on searchInput and selectedBranch
   useEffect(() => {
     const filtered = notes.filter(
       (note) =>
-        note.branch.toLowerCase().includes(searchInput.toLowerCase()) ||
-        note.subject.toLowerCase().includes(searchInput.toLowerCase())
+        (selectedBranch === "All" ||
+          note.branch.toLowerCase() === selectedBranch.toLowerCase()) &&
+          (note.subject.toLowerCase().includes(searchInput.toLowerCase()) 
+          // || note.user.name.toLowerCase().includes(searchInput.toLowerCase())
+        )
     );
     setFilteredNotes(filtered);
-  }, [searchInput, notes]);
+  }, [searchInput, selectedBranch, notes]);
 
   return (
     <>
       <UserNavbar />
-      <HamburgerMenu />
 
       <div className="viewall-notes m-t">
         <div className="lrgcontainer">
-          <h2 className="content-heading">View All Notes</h2>
+          <h2 className="content-heading">{selectedBranch} Notes</h2>
           <div className="search-box">
             <input
               type="text"
-              placeholder="Search by Branch or Subject"
+              placeholder="Search by Subject"
               value={searchInput}
               onChange={(e) => setSearchInput(e.target.value)}
               style={{
@@ -56,6 +58,26 @@ export default function ViewAllnotes() {
                 font: "icon",
               }}
             />
+            <select
+              value={selectedBranch}
+              onChange={(e) => setSelectedBranch(e.target.value)}
+              style={{
+                float: "left",
+                padding: "10px",
+                width: "30%",
+                marginBlockEnd: "20px",
+                font: "icon",
+              }}
+            >
+              <option value="All">All Branches</option>
+              {Array.from(new Set(notes.map((note) => note.branch))).map(       //unique branches from notes and create an option for each
+                (branch) => (
+                  <option key={branch} value={branch}>
+                    {branch}
+                  </option>
+                )
+              )}
+            </select>
           </div>
           <table className="table" id="view_allNotes">
             <thead>

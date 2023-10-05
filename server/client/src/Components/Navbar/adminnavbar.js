@@ -17,7 +17,7 @@ export default function AdminNavbar() {
             <Link to="/admin">Home</Link>
           </li>
           <li className="nav-item">
-            <div style={{ cursor: "pointer" }}>
+            <div style={{ cursor: "pointer", color: "white" }}>
               View Notes <FaCaretDown />
             </div>
             <div className="dropdown">

@@ -17,13 +17,6 @@ import ViewUsers from "./Components/Admin/ViewUsers/viewusers";
 import Status from "./Components/Admin/AssignStatus/status";
 import ContactQueries from "./Components/Admin/ContactQueries/contactqueires";
 import ViewQueries from "./Components/Admin/ViewQueries/viewqueries";
-import Computer from "./Components/User/ViewAllnotes/computer_science";
-import Physics from "./Components/User/ViewAllnotes/physics";
-import Chemistry from "./Components/User/ViewAllnotes/chemistry";
-import Botony from "./Components/User/ViewAllnotes/botony";
-import Zoology from "./Components/User/ViewAllnotes/zoology";
-import English from "./Components/User/ViewAllnotes/english";
-import DataBase from "./Components/User/ViewAllnotes/SubMenu/database";
 
 function App() {
   return (
@@ -60,16 +53,6 @@ function App() {
             path="/admin/contactqueries/viewqueries/:queryId"
             element={<ViewQueries />}
           />
-          <Route exact path="/user/viewallnotes/computer_science" element={<Computer />} />
-          <Route exact path="/user/viewallnotes/physics" element={<Physics />} />
-          <Route exact path="/user/viewallnotes/chemistry" element={<Chemistry />} />
-          <Route exact path="/user/viewallnotes/botony" element={<Botony />} />
-          <Route exact path="/user/viewallnotes/zoology" element={<Zoology />} />
-          <Route exact path="/user/viewallnotes/english" element={<English />} />
-          <Route 
-            exact 
-            path="user/viewallnotes/computer_science/database" 
-            element={<DataBase />} />
         </Routes>
       </Router>
     </div>

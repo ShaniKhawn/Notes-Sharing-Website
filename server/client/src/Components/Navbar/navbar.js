@@ -19,10 +19,10 @@ export default function Navbar() {
           <li className="nav-item">
             <Link to="/contact">Contact</Link>
           </li>
-          <li className="nav-item userlogin" id="userLoginBtn">
-            <Link to="/login">User Login</Link>
-          </li>
         </ul>
+        <button className="nav-item userlogin" id="userLoginBtn">
+          <Link to="/login">User Login</Link>
+        </button>
       </nav>
     </>
   );
