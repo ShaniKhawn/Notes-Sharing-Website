@@ -34,11 +34,16 @@ export default function Login() {
     
             const data = await response.json();
             console.log("Response:", data);
-            // add
+            
+            // For User Id
             console.log('user-id', data.user);
             localStorage.setItem('user', data.user);
             
-    
+            // For Name
+            console.log("User's name received from the server:", data.name);
+            localStorage.setItem("userName", data.name);
+            console.log("User's name stored in local storage:", localStorage.getItem("userName"));
+            
             if (data.success) {
                 if (data.isAdmin) {
                     navigate("/admin");

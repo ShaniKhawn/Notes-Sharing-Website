@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function UserNavbar() {
   const navigate = useNavigate();
+  const userName = localStorage.getItem("userName");
 
   return (
     <>
@@ -25,13 +26,11 @@ export default function UserNavbar() {
           <li className="nav-item">
             <Link to="/user/mynotes">My Notes</Link>
           </li>
-          <li>
-            <button id="logoutBtn" onClick={() => navigate("/")}>
-              Logout
-            </button>
-          </li>
-          <li className="nav-item" id="welcomeUser"></li>
+          <li className="nav-item" id="welcomeUser">Welcome, {userName}</li>
         </ul>
+        <button id="logoutBtn" onClick={() => navigate("/")}>
+          Logout
+        </button>
       </nav>
     </>
   );

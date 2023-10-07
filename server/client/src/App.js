@@ -17,6 +17,7 @@ import ViewUsers from "./Components/Admin/ViewUsers/viewusers";
 import Status from "./Components/Admin/AssignStatus/status";
 import ContactQueries from "./Components/Admin/ContactQueries/contactqueires";
 import ViewQueries from "./Components/Admin/ViewQueries/viewqueries";
+import Profile from "./Components/User/Profile/profile";
 
 function App() {
   return (
@@ -53,6 +54,7 @@ function App() {
             path="/admin/contactqueries/viewqueries/:queryId"
             element={<ViewQueries />}
           />
+          <Route exact path="/profile" element={<Profile />} />
         </Routes>
       </Router>
     </div>

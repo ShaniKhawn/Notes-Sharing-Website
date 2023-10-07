@@ -22,6 +22,7 @@ app.use('/viewUsers', require('./routes/viewUsers'));
 app.use('/contact', require('./routes/contact'));
 app.use('/viewQueries', require('./routes/viewQueries'));
 app.use('/contactQuerie', require('./routes/contactQuerie'));
+app.use('/profile', require('./routes/profile'));
 
 app.listen(5000, () => {
     console.log(`App running on port 5000`)

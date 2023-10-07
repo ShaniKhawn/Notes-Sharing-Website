@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "./navbar.css";
 
 export default function Navbar() {
@@ -11,18 +11,21 @@ export default function Navbar() {
         </div>
         <ul className="nav-items">
           <li className="nav-item">
-            <Link to="/">Home</Link>
+            <NavLink to="/">Home</NavLink>
           </li>
           <li className="nav-item">
-            <Link to="/about">About</Link>
+            <NavLink to="/about">About</NavLink>
           </li>
           <li className="nav-item">
-            <Link to="/contact">Contact</Link>
+            <NavLink to="/contact">Contact</NavLink>
           </li>
         </ul>
-        <button className="nav-item userlogin" id="userLoginBtn">
-          <Link to="/login">User Login</Link>
-        </button>
+        <button className="nav-item btn-login" id="userLoginBtn" >
+            <NavLink to="/signup">Register</NavLink>
+          </button>
+          <button className="nav-item btn-login" id="userLoginBtn">
+            <NavLink to="/login">Login</NavLink>
+          </button>
       </nav>
     </>
   );

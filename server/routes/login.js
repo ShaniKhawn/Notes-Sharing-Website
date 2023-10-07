@@ -28,7 +28,8 @@ app.post('/', async (req, res) => {
       message: 'Login successful',
       token,
       user: user._id,
-      isAdmin: user.isAdmin // Send the isAdmin property
+      isAdmin: user.isAdmin,
+      name: user.name,
     });
   } catch (error) {
     res.status(500).json({ success: false, message: 'Server error' });

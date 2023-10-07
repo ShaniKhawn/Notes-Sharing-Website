@@ -36,8 +36,9 @@
   }
   
   .container-box{
-      max-width: 900px;
+      max-width: 80%;
       margin: 0 auto;
+      /* padding: 0 20px; */
   }
     
   .buttons{
@@ -47,8 +48,9 @@
   }
     
   .ribbon-box {
-      flex-basis: 200px;
-      flex-grow: 1;
+      /* flex-basis: 200px;
+      flex-grow: 1; */
+      flex-basis: calc(33.33% - 20px);
       margin: 10px;
       padding: 10px;
   }
@@ -60,6 +62,7 @@
     color: #333;
     padding: 20px;
     background-color: #f5f5f5;
+    border: 2px solid #395073;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s ease;
@@ -78,17 +81,19 @@
   
   .footer{
     margin-top: 5%;
-    background-color: rgba(128, 128, 128, 0.582);
+    background-color: #333;
     text-align: center;
   }
 
   .soical-icons{
     padding: 25px 0px 5px 0px;
     cursor: pointer;
+    color: #e5e5e5;
   }
 
   .footer p{
     padding-bottom: 5px;
+    color: #e5e5e5;
   }
   
   

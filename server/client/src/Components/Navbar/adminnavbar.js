@@ -6,6 +6,8 @@ import { FaCaretDown } from "react-icons/fa";
 
 export default function AdminNavbar() {
   const navigate = useNavigate();
+  const userName = localStorage.getItem("userName");
+
   return (
     <>
       <nav className="nav-bar bg-color">
@@ -44,12 +46,12 @@ export default function AdminNavbar() {
             <Link to="/admin/contactqueries">Contact Query</Link>
           </li>
           <li>
-            <button id="logoutBtn" onClick={() => navigate("/")}>
-              Logout
-            </button>
+          <li className="nav-item" id="welcomeUser">Welcome, {userName}</li>
           </li>
-          <li className="right" id="welcomeUser"></li>
         </ul>
+          <button id="logoutBtn" onClick={() => navigate("/")}>
+            Logout
+          </button>
       </nav>
     </>
   );
