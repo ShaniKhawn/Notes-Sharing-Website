@@ -69,18 +69,18 @@ export default function Upload() {
     <>
       <UserNavbar />
 
-      <div className="upload-grp">
+      <div className="m-t">
         <div className="container1">
           <h2 className="upload-heading">Upload Notes</h2>
           <div className="form-wrapper">
 
-            {/*********************** upload notes image **************************** */}
+            {/* ____________________________ upload notes image ___________________________ */}
 
             <div className="upload-image">
               <img src={require('../../images/upload-notes.jpg')} alt="upload" className="upload-photo upload-image" />
             </div>
 
-            {/* ********************** upload notes form section ************************* */}
+            {/* ___________________________ upload notes form section ___________________________ */}
 
             <form method="post" className="form" encType="multipart/form-data" onSubmit={handleSubmit}>
               <div className="form-grp">

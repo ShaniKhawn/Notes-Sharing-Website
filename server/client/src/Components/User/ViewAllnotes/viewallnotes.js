@@ -5,37 +5,54 @@ import "./css.css";
 export default function ViewAllnotes() {
   const [notes, setNotes] = useState([]);
   const [searchInput, setSearchInput] = useState("");
-  const [selectedBranch, setSelectedBranch] = useState("All"); // Default value is "All"
+  const [selectedBranch, setSelectedBranch] = useState("All");
+  const [selectedSubject, setSelectedSubject] = useState("All");
   const [filteredNotes, setFilteredNotes] = useState([]);
+  const [branchSubjects, setBranchSubjects] = useState([]);
+  const [uniqueBranches, setUniqueBranches] = useState([]);
+  const [uniqueSubjects, setUniqueSubjects] = useState([]);
 
   useEffect(() => {
+    // Fetch notes
     fetch("http://localhost:5000/viewallnotes")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
+      .then((response) => response.json())
       .then((data) => {
-        // Filter notes with "accept" status
-        const viewallnotes = data.filter((note) => note.status === "accept");
-        setNotes(viewallnotes);
+        const viewAllNotes = data.filter((note) => note.status === "accept");
+        setNotes(viewAllNotes);
+        setUniqueBranches(Array.from(new Set(viewAllNotes.map((note) => note.branch))));
+        setUniqueSubjects(Array.from(new Set(viewAllNotes.map((note) => note.subject))));
       })
       .catch((error) => console.error("Error fetching notes:", error));
   }, []);
 
-  // Filter notes based on searchInput and selectedBranch
   useEffect(() => {
+    // Calculate branchSubjects based on selectedBranch
+    if (selectedBranch !== "All") {
+      const subjectsForBranch = uniqueSubjects.filter((subject) =>
+        notes.some(
+          (note) =>
+            note.branch.toLowerCase() === selectedBranch.toLowerCase() &&
+            note.subject.toLowerCase() === subject.toLowerCase()
+        )
+      );
+      setBranchSubjects(subjectsForBranch);
+    } else {
+      setBranchSubjects([]);
+    }
+  }, [selectedBranch, uniqueSubjects, notes]);
+
+  useEffect(() => {
+    // Filter notes based on searchInput, selectedBranch, and selectedSubject
     const filtered = notes.filter(
       (note) =>
         (selectedBranch === "All" ||
           note.branch.toLowerCase() === selectedBranch.toLowerCase()) &&
-          (note.subject.toLowerCase().includes(searchInput.toLowerCase()) 
-          // || note.user.name.toLowerCase().includes(searchInput.toLowerCase())
-        )
+        (selectedSubject === "All" ||
+          note.subject.toLowerCase() === selectedSubject.toLowerCase()) &&
+        note.subject.toLowerCase().includes(searchInput.toLowerCase())
     );
     setFilteredNotes(filtered);
-  }, [searchInput, selectedBranch, notes]);
+  }, [searchInput, selectedBranch, selectedSubject, notes]);
 
   return (
     <>
@@ -53,7 +70,7 @@ export default function ViewAllnotes() {
               style={{
                 float: "right",
                 padding: "10px",
-                width: "30%",
+                width: "20%",
                 marginBlockEnd: "20px",
                 font: "icon",
               }}
@@ -64,20 +81,38 @@ export default function ViewAllnotes() {
               style={{
                 float: "left",
                 padding: "10px",
-                width: "30%",
+                width: "20%",
                 marginBlockEnd: "20px",
                 font: "icon",
               }}
             >
               <option value="All">All Branches</option>
-              {Array.from(new Set(notes.map((note) => note.branch))).map(       //unique branches from notes and create an option for each
-                (branch) => (
-                  <option key={branch} value={branch}>
-                    {branch}
-                  </option>
-                )
-              )}
+              {uniqueBranches.map((branch) => (
+                <option key={branch} value={branch}>
+                  {branch}
+                </option>
+              ))}
             </select>
+            {selectedBranch !== "All" && (
+              <select
+                value={selectedSubject}
+                onChange={(e) => setSelectedSubject(e.target.value)}
+                style={{
+                  float: "left",
+                  padding: "10px",
+                  width: "15%",
+                  marginBlockEnd: "20px",
+                  font: "icon",
+                }}
+              >
+                <option value="All">All Subjects</option>
+                {branchSubjects.map((subject) => (
+                  <option key={subject} value={subject}>
+                    {subject}
+                  </option>
+                ))}
+              </select>
+            )}
           </div>
           <table className="table" id="view_allNotes">
             <thead>

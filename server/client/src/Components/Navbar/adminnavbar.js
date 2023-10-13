@@ -46,7 +46,14 @@ export default function AdminNavbar() {
             <Link to="/admin/contactqueries">Contact Query</Link>
           </li>
           <li>
-          <li className="nav-item" id="welcomeUser">Welcome, {userName}</li>
+          <li className="nav-item" id="welcomeUser">Welcome, {userName}
+          <div className="dropdown">
+            <ul className="dropdown-content">
+              <li>
+                <Link to="/profile">Profile</Link>
+              </li>
+            </ul>
+          </div></li>
           </li>
         </ul>
           <button id="logoutBtn" onClick={() => navigate("/")}>

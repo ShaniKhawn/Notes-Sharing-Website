@@ -49,7 +49,7 @@ export default function Contact() {
       <div className="contact">
         <div className="contact-container">
           <div className="contact-image">
-            <img src={require('../images/contact.jpg')} alt="about" className="about-photo" />
+            <img src={require('../images/contact.jpg')} alt="contact" className="contact-photo" />
           </div>
 
           <div className="contact-content">

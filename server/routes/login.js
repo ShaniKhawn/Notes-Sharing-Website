@@ -8,7 +8,6 @@ app.post('/', async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    // Check if user exists
     const user = await User.findOne({ email });
     if (!user) {
       return res.status(401).json({ message: 'Invalid email or password' });
@@ -35,7 +34,7 @@ app.post('/', async (req, res) => {
     res.status(500).json({ success: false, message: 'Server error' });
   }
 });
-
+ // for all user
 app.get('/', async (req, res) => {
   try {
     const email = req.query.email;
@@ -46,6 +45,27 @@ app.get('/', async (req, res) => {
     }
 
     res.status(200).json({ name: user.name });
+  } catch (error) {
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+// for specific user
+app.get('/:id', async (req, res) => {
+  const userId = req.params.id;
+
+  try {
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    res.status(200).json({
+      name: user.name,
+      email: user.email,
+      isAdmin: user.isAdmin,
+    });
   } catch (error) {
     res.status(500).json({ message: 'Server error' });
   }
